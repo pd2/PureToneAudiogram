@@ -243,8 +243,8 @@ for ear_indx = 1:num_ears
         % heard levels
         heard_levels = repmat(max(list_dB_HL),num_repetitions, 1);
         
-        %% start loop counter
-        jj = 1;
+        %% start loop counters
+        jj = 1; ii = 1;
         
         % iterate over all hearing levels
         while (jj <= num_dB_HL)
@@ -256,7 +256,7 @@ for ear_indx = 1:num_ears
                 cur_dB_HL = max_dB_HL;
             end
             
-            disp(['Ear: ' ear ' Freq: ' num2str(cur_freq) ]);
+            disp(['Ear: ' ear ' Freq: ' num2str(cur_freq) ' Trial: ' num2str(ii)]);
             
             % store parameters of the current trial
             result_cur_trial(1) = ear_indx;
@@ -295,7 +295,7 @@ for ear_indx = 1:num_ears
                 % obtain response through a popup window
                 if flag_enable_gui
                     str_resp = questdlg(['In your ' ear ' ear, ' resp_question], ...
-                        resp_title, str_choice_1,str_choice_2,str_def_choice);
+                        ['Trial: ' num2str(ii) ' ' resp_title], str_choice_1,str_choice_2,str_def_choice);
                     
                     % convert the recorded response to value
                     if strcmp(str_resp, str_choice_1)
@@ -390,7 +390,8 @@ for ear_indx = 1:num_ears
                 jj = jj + 1;
             end
             
-            % increment counter
+            % increment counters
+            ii = ii + 1;
             kk = kk + 1;
             
             %% if user does not make a choice, give opportunity to exit
